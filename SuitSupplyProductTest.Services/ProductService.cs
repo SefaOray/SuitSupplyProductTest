@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using SuitSupplyProductTest.Data;
 
 namespace SuitSupplyProductTest.Services
@@ -16,32 +14,32 @@ namespace SuitSupplyProductTest.Services
 
         public Product AddProduct(Product product)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteProduct(Product product)
-        {
-            throw new NotImplementedException();
+            return productDataAccess.InsertProduct(product);
         }
 
         public Product GetProductByCode(string code)
         {
-            throw new NotImplementedException();
+            return productDataAccess.GetProductByCode(code);
         }
 
         public Product GetProductById(int id)
         {
-            throw new NotImplementedException();
+            return productDataAccess.GetProductById(id);
         }
 
         public IEnumerable<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return productDataAccess.GetProducts();
         }
 
         public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            productDataAccess.UpdateProduct(product);
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            productDataAccess.DeleteProduct(product);
         }
     }
 }

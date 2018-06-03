@@ -15,11 +15,11 @@ namespace SuitSupplyProductTest.Tests.Services
         private readonly ProductService productService;
         public ProductServiceTests()
         {
-            var mock = new Mock<IProductDataAccess>();
+            dataAccessMock = new Mock<IProductDataAccess>();
 
-            mock.Setup(m => m.InsertProduct(It.IsAny<Product>())).Returns((Product p) => p);
+            dataAccessMock.Setup(m => m.InsertProduct(It.IsAny<Product>())).Returns((Product p) => p);
 
-            productService = new ProductService(mock.Object);
+            productService = new ProductService(dataAccessMock.Object);
         }
 
         [TestMethod]
