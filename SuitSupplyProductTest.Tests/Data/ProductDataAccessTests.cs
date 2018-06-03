@@ -24,8 +24,10 @@ namespace SuitSupplyProductTest.Tests
         [TestMethod]
         public void InsertProductShouldReturnInsertedProduct()
         {
-            
-             
+            /*
+             * We need to mock EntityEntry<Product> class to allow this class pass the test.
+             * EntityEntry<Product> is currently unmockable due to abstract parameter in it's constructor.
+             */
             var product = new Product() { Code = "Code", Name = "Name", Price = 123 };
             var insertedProduct = _productDataAccess.InsertProduct(product);
 
@@ -36,6 +38,9 @@ namespace SuitSupplyProductTest.Tests
         [TestMethod]
         public void GetProductByIdShouldReturnProductWithSameId()
         {
+            /*
+             *  We need to mock DbSet<Product> to allow this class pass the test, which is not possible in current version of EF Core
+             */ 
             var product = _productDataAccess.GetProductById(1);
             Assert.AreEqual(1, product.Id);
         }
@@ -43,6 +48,9 @@ namespace SuitSupplyProductTest.Tests
         [TestMethod]
         public void GetProductByCodeShouldReturnProductWithSameCode()
         {
+            /*
+             *  We need to mock DbSet<Product> to allow this class pass the test, which is not possible in current version of EF Core
+             */
             var product = _productDataAccess.GetProductByCode("code");
             Assert.AreEqual("code", product.Code);
         }
