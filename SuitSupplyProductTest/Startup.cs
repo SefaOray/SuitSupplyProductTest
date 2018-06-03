@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SuitSupplyProductTest.Data;
+using SuitSupplyProductTest.Data.Config;
 using SuitSupplyProductTest.Models;
 using SuitSupplyProductTest.Services;
 using Swashbuckle.AspNetCore.Swagger;
@@ -55,7 +56,10 @@ namespace SuitSupplyProductTest
 
             builder.Populate(services);
 
-            
+            var dataCnf = new DataConfig();
+            Configuration.GetSection("DataConfig").Bind(dataCnf);
+
+            builder.RegisterInstance<DataConfig>(dataCnf);
             builder.RegisterType<EfDbContext>().As<EfDbContext>();
             builder.RegisterType<ProductDataAccess>().As<IProductDataAccess>();
 

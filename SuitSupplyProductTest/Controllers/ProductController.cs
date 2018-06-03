@@ -62,6 +62,7 @@ namespace SuitSupplyProductTest.Controllers
         [ProducesResponseType(400)]
         public IActionResult Post([FromBody]ProductModel productModel)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

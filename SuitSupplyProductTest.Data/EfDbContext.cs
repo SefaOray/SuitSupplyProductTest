@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SuitSupplyProductTest.Data.Config;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,20 +11,20 @@ namespace SuitSupplyProductTest.Data
     /// </summary>
     public class EfDbContext : DbContext
     {
-        private readonly string _connectionStr;
+        private readonly DataConfig _config;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionStr">SQL Connection string</param>
-        public EfDbContext(string connectionStr)
+        /// <param name="config">DataConfig</param>
+        public EfDbContext(DataConfig config)
         {
-            _connectionStr = connectionStr;
+            _config = config;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionStr);
+            optionsBuilder.UseSqlServer(_config.SqlConfig.ConnectionStr);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
