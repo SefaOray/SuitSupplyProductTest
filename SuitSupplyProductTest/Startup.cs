@@ -11,7 +11,9 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SuitSupplyProductTest.Data;
+using SuitSupplyProductTest.Models;
 using SuitSupplyProductTest.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SuitSupplyProductTest
 {
@@ -40,6 +42,10 @@ namespace SuitSupplyProductTest
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SuitSupply Product Api", Version = "v1" });
+            });
 
             var builder = new ContainerBuilder();
 
@@ -60,6 +66,12 @@ namespace SuitSupplyProductTest
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
