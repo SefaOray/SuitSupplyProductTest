@@ -104,7 +104,9 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            _productService.UpdateProduct(Mapper.Map<Product>(productModel));
+            var product = Mapper.Map<Product>(productModel);
+            product.Id = productId;
+            _productService.UpdateProduct(product);
             return Ok();
         }
 
