@@ -16,11 +16,11 @@ namespace SuitSupplyProductTest.Controllers
     [ApiVersion("1.0")]
     public class ProductController : Controller
     {
-        private readonly IProductService productService;
+        private readonly IProductService _productService;
 
-        public ProductController()
+        public ProductController(IProductService productService)
         {
-            this.productService = productService;
+            this._productService = productService;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace SuitSupplyProductTest.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
         public IActionResult Get()
         {
-            return Ok(productService.GetProducts());
+            return Ok(_productService.GetProducts());
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace SuitSupplyProductTest.Controllers
         [ProducesResponseType(404)]
         public IActionResult Get(int productId)
         {
-            var product = productService.GetProductById(productId);
+            var product = _productService.GetProductById(productId);
 
             if (product is null)
                 return NotFound();
@@ -67,7 +67,7 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var existingProduct = productService.GetProductByCode(productModel.Code);
+            var existingProduct = _productService.GetProductByCode(productModel.Code);
 
             if (existingProduct != null)
             {
@@ -75,7 +75,7 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = productService.AddProduct(Mapper.Map<Product>(productModel));
+            var result = _productService.AddProduct(Mapper.Map<Product>(productModel));
             return CreatedAtAction(nameof(Get), new { productId = result.Id }, result);
         }
 
@@ -95,7 +95,7 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            var existingProduct = productService.GetProductByCode(productModel.Code);
+            var existingProduct = _productService.GetProductByCode(productModel.Code);
 
             if (existingProduct != null && existingProduct.Id != productId)
             {
@@ -103,7 +103,7 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
-            productService.UpdateProduct(Mapper.Map<Product>(productModel));
+            _productService.UpdateProduct(Mapper.Map<Product>(productModel));
             return Ok();
         }
 
@@ -117,12 +117,12 @@ namespace SuitSupplyProductTest.Controllers
         [ProducesResponseType(400)]
         public IActionResult Delete(int productId)
         {
-            var product = productService.GetProductById(productId);
+            var product = _productService.GetProductById(productId);
 
             if (product is null)
                 return BadRequest();
 
-            productService.DeleteProduct(product);
+            _productService.DeleteProduct(product);
             return Ok();
         }
     }
