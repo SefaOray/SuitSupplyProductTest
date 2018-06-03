@@ -25,6 +25,6 @@ namespace SuitSupplyProductTest.Data
                 .ToTable("Products");
         }
 
-        internal DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

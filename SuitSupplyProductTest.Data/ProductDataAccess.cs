@@ -37,7 +37,7 @@ namespace SuitSupplyProductTest.Data
 
         public Product GetProductById(int id)
         {
-            return context.Products.FirstOrDefault(p => p.Id == id);
+            return context.Products.Find(id);
         }
 
         public Product GetProductByCode(string code)
