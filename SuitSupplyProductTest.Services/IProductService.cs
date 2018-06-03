@@ -12,6 +12,5 @@ namespace SuitSupplyProductTest.Services
         IEnumerable<Product> GetProducts();
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
-        void DeleteProduct(int productId);
     }
 }

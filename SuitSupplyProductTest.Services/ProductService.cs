@@ -24,11 +24,6 @@ namespace SuitSupplyProductTest.Services
             throw new NotImplementedException();
         }
 
-        public void DeleteProduct(int productId)
-        {
-            throw new NotImplementedException();
-        }
-
         public Product GetProductByCode(string code)
         {
             throw new NotImplementedException();

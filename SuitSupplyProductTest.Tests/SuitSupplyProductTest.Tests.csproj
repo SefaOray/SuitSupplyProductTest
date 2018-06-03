@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SuitSupplyProductTest.Data\SuitSupplyProductTest.Data.csproj" />
+    <ProjectReference Include="..\SuitSupplyProductTest.Services\SuitSupplyProductTest.Services.csproj" />
   </ItemGroup>
 
 </Project>
