@@ -1,39 +1,66 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace SuitSupplyProductTest.Data
 {
     public class ProductDataAccess : IProductDataAccess
     {
-        public void DeleteProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly EfDbContext context;
 
-        public Product GetProductByCode(string code)
+        public ProductDataAccess(EfDbContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Product GetProductById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Product> GetProducts()
-        {
-            throw new NotImplementedException();
+            this.context = context;
         }
 
         public Product InsertProduct(Product product)
         {
-            throw new NotImplementedException();
+            if (product is null)
+                throw new ArgumentNullException("product");
+
+            product.LastUpdated = DateTime.Now;
+
+            var entity = context.Products.Add(product);
+            context.SaveChanges();
+            return entity.Entity;
         }
 
         public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            if (product is null)
+                throw new ArgumentNullException("product");
+
+            context.Products.Attach(product);
+            context.Entry(product).State = EntityState.Modified;
+        }
+
+        public Product GetProductById(int id)
+        {
+            return context.Products.FirstOrDefault(p => p.Id == id);
+        }
+
+        public Product GetProductByCode(string code)
+        {
+            return context.Products.FirstOrDefault(p => p.Code == code);
+        }
+
+        public IEnumerable<Product> GetProducts()
+        {
+            return context.Products.AsEnumerable();
+        }
+
+        public void DeleteProduct(int productId)
+        {
+            var product = context.Products.Find(productId);
+            context.Products.Remove(product);
+            context.SaveChanges();
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            context.Products.Remove(product);
+            context.SaveChanges();
         }
     }
 }
