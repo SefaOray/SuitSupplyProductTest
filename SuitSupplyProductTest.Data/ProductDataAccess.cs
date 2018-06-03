@@ -43,8 +43,10 @@ namespace SuitSupplyProductTest.Data
             if (product is null)
                 throw new ArgumentNullException("product");
 
+            product.LastUpdated = DateTime.Now;
             context.Products.Attach(product);
             context.Entry(product).State = EntityState.Modified;
+            context.SaveChanges();
         }
 
         /// <summary>

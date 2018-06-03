@@ -96,6 +96,12 @@ namespace SuitSupplyProductTest.Controllers
                 return BadRequest(ModelState);
             }
 
+            if(productId is default(int))
+            {
+                ModelState.TryAddModelError("Id", "Invalid Product Id");
+                return BadRequest(ModelState);
+            }
+
             var existingProduct = _productService.GetProductByCode(productModel.Code);
 
             if (existingProduct != null && existingProduct.Id != productId)
