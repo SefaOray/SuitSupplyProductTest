@@ -13,6 +13,7 @@ namespace SuitSupplyProductTest.Controllers
 {
     [Produces("application/json")]
     [Route("api/Product")]
+    [ApiVersion("1.0")]
     public class ProductController : Controller
     {
         private readonly IProductService productService;

@@ -47,6 +47,10 @@ namespace SuitSupplyProductTest
                 c.SwaggerDoc("v1", new Info { Title = "SuitSupply Product Api", Version = "v1" });
             });
 
+            services.AddApiVersioning(cfg => {
+                cfg.AssumeDefaultVersionWhenUnspecified = true;
+                cfg.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+                });
             var builder = new ContainerBuilder();
 
             builder.Populate(services);
