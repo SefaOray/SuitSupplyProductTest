@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -19,6 +20,17 @@ namespace SuitSupplyProductTest
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConfigureMaps();
+        }
+
+        private void ConfigureMaps()
+        {
+            Mapper.Initialize(cfg =>
+                cfg.CreateMap<ProductModel, Product>()
+                    .ForMember(dest => dest.Id, opt => opt.UseValue(default(int)))
+                    .ForMember(dest => dest.LastUpdated, opt => opt.UseValue(default(DateTime)))
+            );
+
         }
 
         public IConfiguration Configuration { get; }
