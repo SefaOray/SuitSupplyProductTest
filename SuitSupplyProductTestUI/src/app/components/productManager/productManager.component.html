@@ -1,0 +1,20 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Product Code</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.photo }}</td>
+            <td>{{ product.price }}</td>
+          </tr>
+        </tbody>
+      </table>
