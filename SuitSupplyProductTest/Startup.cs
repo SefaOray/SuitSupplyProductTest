@@ -93,6 +93,10 @@ namespace SuitSupplyProductTest
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCors(builder =>
+                builder.WithOrigins("*"));
+
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
