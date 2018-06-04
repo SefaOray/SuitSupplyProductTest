@@ -52,7 +52,8 @@ export class ProductEditComponent implements OnInit {
             this.productService.UpdateProduct(this.product.id, {code: this.product.code, name: this.product.name, photo: this.product.photo, price:this.product.price}).subscribe((res) => {
                 this.statusText = "Product is updated"
             }, (err) => {
-                this.statusText = "Unable to update product." + err.json() ||  err.statusText;
+                console.log(err);
+                this.statusText = "Unable to update product." 
             })
         }
         else
@@ -61,9 +62,20 @@ export class ProductEditComponent implements OnInit {
                 
                 this.router.navigate(['/productEdit', {id: res.id }])
             }, (err) => {
-                this.statusText = "Unable to update product." + err.json() ||  err.statusText;
+                console.log(err);
+                this.statusText = "Unable to update product." 
             })
         }
         
+    }
+
+    deleteProduct()
+    {
+        this.productService.DeleteProduct(this.product.id).subscribe((res) => {
+            this.statusText = "Product is deleted";
+        }, (err) => {
+            console.log(err);
+            this.statusText = "Error while deleting the product";
+        })
     }
 }

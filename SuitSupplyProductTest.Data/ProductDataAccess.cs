@@ -87,7 +87,8 @@ namespace SuitSupplyProductTest.Data
             if (product is null)
                 throw new ArgumentNullException("product");
 
-            context.Products.Remove(product);
+            context.Products.Attach(product);
+            context.Entry(product).State = EntityState.Deleted;
             context.SaveChanges();
         }
     }

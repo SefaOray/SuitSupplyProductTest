@@ -18,7 +18,7 @@
     </div>
 
     <button type="button" class="btn btn-primary" (click)="saveProduct()">Save Product</button>
-    <button *ngIf="!newProduct" type="button" class="btn btn-danger" (click)="deleteProduct">Delete Product</button>
+    <button *ngIf="!newProduct" type="button" class="btn btn-danger" (click)="deleteProduct()">Delete Product</button>
 </form>
 
 <span >{{statusText}}</span>

@@ -121,7 +121,7 @@ namespace SuitSupplyProductTest.Controllers
         /// </summary>
         /// <param name="productId">Product Id to delete</param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("{productId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult Delete(int productId)
