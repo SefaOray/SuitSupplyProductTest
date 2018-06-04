@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
   title = 'app';
 
   dtOptions: DataTables.Settings = {
-    searching: true
+    searching: true,
+    
   };
 
   products: Product[] = [];

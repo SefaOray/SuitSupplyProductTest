@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit,Renderer  } from '@angular/core';
 import { ProductService } from '../../services/productService';
 import { Product } from '../../types/product';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'product-manager',
@@ -11,16 +12,32 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class ProductManagerComponent implements OnInit {
   
-
-
-  dtOptions: DataTables.Settings = {
-    searching: true
+  dtOptions: any = {
+    searching: true,
+    rowCallback: (row: Node, data: any[] | Object, index: number) => {
+      const self = this;
+      // Unbind first in order to avoid any duplicate handler
+      // (see https://github.com/l-lin/angular-datatables/issues/87)
+      $('td', row).unbind('click');
+      $('td', row).bind('click', () => {
+        self.rowClickHandler(data);
+      });
+      return row;
+    },
+    select: true
   };
+
+  selectedId;
+
+  rowClickHandler(info: any): void {
+    this.selectedId = info[0];
+    console.log(this.selectedId);
+  }
 
   products: Product[] = [];
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private productService : ProductService) {
+  constructor(private renderer: Renderer, private router: Router, private productService : ProductService) {
 
   }
   ngOnInit(): void {
