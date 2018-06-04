@@ -24,13 +24,35 @@ export class ProductManagerComponent implements OnInit {
       });
       return row;
     },
-    select: true
+    select: true,
+    dom: 'Bfrtip',
+    buttons:[
+      'excel',
+      {
+        text: 'Details',
+        action:(function(e,dt,node,config){
+          console.log(e);
+          console.log(dt);
+          console.log(node);
+          console.log(config);
+        })
+      }
+    ]
   };
 
   selectedId;
 
   rowClickHandler(info: any): void {
-    this.selectedId = info[0];
+    //unclick event
+    if(info[0] == this.selectedId)
+    {
+      this.selectedId = undefined;
+    }
+    else{
+      this.selectedId = info[0];
+    }
+    
+    
     console.log(this.selectedId);
   }
 
