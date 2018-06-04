@@ -18,4 +18,18 @@ export class ProductService{
     {
         return this.serviceBase.get("/api/Product/" + productId);
     }
+
+    UpdateProduct(id, product){
+        return this.serviceBase.put("/api/Product/" + id,product);
+    }
+
+    DeleteProduct(id)
+    {
+        return this.serviceBase.delete("/api/Product/" + id);
+    }
+
+    CreateProduct(product)
+    {
+        return this.serviceBase.post("/api/Product", product);
+    }
 }

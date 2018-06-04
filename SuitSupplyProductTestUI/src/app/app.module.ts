@@ -10,6 +10,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { ProductManagerComponent } from './components/productManager/productManager.component';
 import { ProductEditComponent } from './components/productEdit/productEdit.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';  //<<<< import it here
 
 const appRoutes: Routes = [
   { path: 'product', component: ProductManagerComponent },
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     NgbModule.forRoot(),
+    FormsModule,
     BrowserModule,
     HttpModule,
     DataTablesModule,

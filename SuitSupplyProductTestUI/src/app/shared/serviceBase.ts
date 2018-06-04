@@ -31,17 +31,23 @@ export class ServiceBase{
         });
     }
 
-    delete(endpoint: string, params: any)
+    delete(endpoint: string)
     {
-        return this.httpBase.delete(this.baseUrl + endpoint, params)
+        return this.httpBase.delete(this.baseUrl + endpoint)
         .map((res) => {
                 return this.extractData(res)
         });
     }
 
     private extractData(res: Response) {
-        let body = res.json();
-        return body || { };
+
+        try{
+            let body = res.json();
+            return body || { };
+        }
+        catch{
+            return {};
+        }
     }
 
     private handleError (error: any) {

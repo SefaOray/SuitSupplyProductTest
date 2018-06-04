@@ -42,6 +42,7 @@ namespace SuitSupplyProductTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
@@ -93,8 +94,12 @@ namespace SuitSupplyProductTest
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseCors(builder =>
-                builder.WithOrigins("*"));
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+
 
 
             app.UseStaticFiles();

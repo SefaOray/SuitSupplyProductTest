@@ -1,0 +1,24 @@
+
+<form name="productForm">
+    <div class="form-group">
+        <label for="productCode">Product Code</label>
+        <input type="text" class="form-control" id="productCode" name="code" placeholder="Product Code" [(ngModel)]="product.code">
+    </div>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="name" placeholder="Name" [(ngModel)]="product.name">
+    </div>
+    <div class="form-group">
+        <label for="Photo">Photo</label>
+        <input type="text" class="form-control" id="Photo" name="photo" placeholder="Photo" [(ngModel)]="product.photo">
+    </div>
+    <div class="form-group">
+            <label for="Price">Price</label>
+            <input type="text" class="form-control" id="Price" name="price" placeholder="Price" [(ngModel)]="product.price">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="saveProduct()">Save Product</button>
+    <button *ngIf="!newProduct" type="button" class="btn btn-danger" (click)="deleteProduct">Delete Product</button>
+</form>
+
+<span >{{statusText}}</span>

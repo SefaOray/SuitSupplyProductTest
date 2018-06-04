@@ -15,7 +15,7 @@ namespace SuitSupplyProductTest.Models
         public string Name { get; set; }
         public string Photo { get; set; }
 
-        [Range(0, 999, ErrorMessage = "Price must be between 0 and 999")]
+        [Range(0, int.MaxValue, ErrorMessage = "Price must be higher than 0")]
         public decimal Price { get; set; }
     }
 }

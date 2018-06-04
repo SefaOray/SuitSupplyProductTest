@@ -66,7 +66,7 @@ namespace SuitSupplyProductTest.Data
         /// <returns>Product</returns>
         public Product GetProductByCode(string code)
         {
-            return context.Products.FirstOrDefault(p => p.Code == code);
+            return context.Products.AsNoTracking().FirstOrDefault(p => p.Code == code);
         }
 
         /// <summary>

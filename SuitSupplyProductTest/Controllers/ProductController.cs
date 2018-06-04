@@ -86,7 +86,7 @@ namespace SuitSupplyProductTest.Controllers
         /// <param name="productId">Product Id to update</param>
         /// <param name="productModel">New product values</param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPut("{productId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult Put(int productId, [FromBody]ProductModel productModel)
