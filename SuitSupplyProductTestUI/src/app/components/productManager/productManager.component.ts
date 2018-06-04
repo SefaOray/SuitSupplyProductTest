@@ -27,21 +27,16 @@ export class ProductManagerComponent implements OnInit {
     select: true,
     dom: 'Bfrtip',
     buttons:[
-      'excel',
-      {
-        text: 'Details',
-        action:(function(e,dt,node,config){
-          console.log(e);
-          console.log(dt);
-          console.log(node);
-          console.log(config);
-        })
-      }
+      'excel'
     ]
   };
 
   selectedId;
 
+  showDetails(){
+    this.router.navigate(['/productEdit', {id : this.selectedId}]);
+  }
+  
   rowClickHandler(info: any): void {
     //unclick event
     if(info[0] == this.selectedId)

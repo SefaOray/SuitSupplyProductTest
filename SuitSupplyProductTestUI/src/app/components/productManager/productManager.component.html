@@ -1,3 +1,6 @@
+<button (click)="showDetails()" *ngIf="selectedId">Show details / Edit Product</button>
+
+
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
