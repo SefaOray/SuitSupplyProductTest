@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ProductService } from './services/productService';
 import { ServiceBase } from './shared/serviceBase';
 import { HttpModule } from '@angular/http';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HttpModule } from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [ProductService, ServiceBase],
   bootstrap: [AppComponent]
