@@ -8,19 +8,23 @@ import { ServiceBase } from './shared/serviceBase';
 import { HttpModule } from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import { ProductManagerComponent } from './components/productManager/productManager.component';
+import { ProductEditComponent } from './components/productEdit/productEdit.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'product', component: ProductManagerComponent },
-  
+  { path: 'productEdit', component: ProductEditComponent },
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductManagerComponent
+    ProductManagerComponent,
+    ProductEditComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     HttpModule,
     DataTablesModule,

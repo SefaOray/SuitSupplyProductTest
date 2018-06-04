@@ -13,4 +13,9 @@ export class ProductService{
     {
         return this.serviceBase.get('/api/Product');
     }
+
+    GetProduct(productId) : Observable<any>
+    {
+        return this.serviceBase.get("/api/Product/" + productId);
+    }
 }
