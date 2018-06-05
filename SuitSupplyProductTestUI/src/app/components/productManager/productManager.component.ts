@@ -36,6 +36,9 @@ export class ProductManagerComponent implements OnInit {
   showDetails(){
     this.router.navigate(['/productEdit', {id : this.selectedId}]);
   }
+  addNewProduct(){
+    this.router.navigate(['/productEdit']);
+  }
   
   rowClickHandler(info: any): void {
     //unclick event
