@@ -18,3 +18,14 @@ To run UI project
 * Install dependencies `npm install package.json`
 * Run the app `ng serve`
 * Navigate to `http://localhost:4200`
+
+# Requirement checklist
+
+* .Net Core is used
+* MsSql and EF used
+* Swagger documentation can be found at /swagger 
+* Angular SPA 
+* Services and Data layers are scalable and reusable as nuget packages
+* n layer architecture is used
+* Unit tests for controller and business layer is provided
+* Different version of method calls supported via API versioning
