@@ -28,11 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Content Remove="ClientApp\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SuitSupplyProductTest.Data\SuitSupplyProductTest.Data.csproj" />
     <ProjectReference Include="..\SuitSupplyProductTest.Services\SuitSupplyProductTest.Services.csproj" />
   </ItemGroup>
