@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -47,6 +49,11 @@ namespace SuitSupplyProductTest
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "SuitSupply Product Api", Version = "v1" });
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var commentsFileName = Assembly.GetExecutingAssembly().GetName().Name + ".XML";
+                var commentsFile = Path.Combine(baseDirectory, commentsFileName);
+
+                c.IncludeXmlComments(commentsFile);
             });
 
             services.AddApiVersioning(cfg => {
@@ -79,6 +86,7 @@ namespace SuitSupplyProductTest
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                
             });
 
             if (env.IsDevelopment())
